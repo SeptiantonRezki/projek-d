@@ -1,7 +1,5 @@
-const sqlite = require('sqlite3');
-const sqlite3 = sqlite.verbose();
-
-let db = new sqlite3.Database('chain.sqlite3', () => { });
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('mydb.sqlite');
 
 db.serialize(() => {
     db.run(`CREATE TABLE Person 
@@ -56,6 +54,10 @@ db.serialize(() => {
     const query = "SELECT id, brand, model, ownerId FROM Vehicle";
     db.each( query , (err, row) => {
         console.log(`${row.id} - ${row.brand} - ${row.model} - ${row.ownerId}`);       
+    });
+    const query2 = "SELECT id, email, nama FROM Person";
+    db.each( query2 , (err, row) => {
+        console.log(`${row.id} - ${row.email} - ${row.nama} - ${row.ownerId}`);       
     });
 })
 db.close();

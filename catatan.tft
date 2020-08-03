@@ -1,0 +1,26 @@
+npm run dev
+
+dependecies typescript
+sqlite3 
+node 
+react
+
+
+menjalankan database 
+node sqlite3/sqlite3.ts
+
+yang digunakan
+
+import { NextApiRequest, NextApiResponse}  from 'next';
+export default function getPersonById(req : NextApiRequest, res : NextApiResponse){
+    res.json(
+        {  
+            byId: req.query.id, 
+            message :'informasi seseorang dari id'
+        }
+    )
+}
+
+
+sqlite3 with bluebird
+https://stackabuse.com/a-sqlite-tutorial-with-node-js/
