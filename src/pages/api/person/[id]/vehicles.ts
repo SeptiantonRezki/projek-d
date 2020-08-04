@@ -1,7 +1,14 @@
 import { NextApiRequest, NextApiResponse}  from 'next';
-// mendapatkan semua vehicles dari id person
+import { db, repoPerson, repoVehicle, Promise} from '../../../../../database';
 
 
-export default function getAllVehiclesByIdPerson(req : NextApiRequest, res : NextApiResponse){
-    res.json({byId: req.query.id, message :'getAllVehicleByIdPerson'})
+export default async function getAllVehiclesByIdPerson(req : NextApiRequest, res : NextApiResponse){
+    
+    const data = await repoVehicle.getAllByOwner(req.query.id).then((data) => {
+        return new Promise((resolve, reject) => {
+            resolve(data);
+        })
+    })
+    
+    res.json(data);
 }

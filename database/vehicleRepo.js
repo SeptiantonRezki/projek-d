@@ -4,14 +4,7 @@ class VehicleRepo{
         this.dbApp = dbApp;
     }
     createTable(){
-        const sql = `
-            CREATE TABLE IF NOT EXISTS Vehicle(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                brand TEXT,
-                modal TEXT,
-                idOwner REFERENCES Person(id)
-            )
-        `;
+        const sql = `CREATE TABLE IF NOT EXISTS Vehicle(id INTEGER PRIMARY KEY AUTOINCREMENT, brand TEXT, modal TEXT, idOwner REFERENCES Person(id))`;
         return this.dbApp.run(sql);
     }
     create(brand, modal, idOwner){
@@ -46,7 +39,22 @@ class VehicleRepo{
             [idOwner]
         )
     }
-
+    getAll(){
+        return this.dbApp.all(
+            "SELECT * FROM Vehicle"
+        )
+    }
+    join(){
+        const query = `SELECT 
+            p.id, p.nama, p.email, v.id, v.modal, v.brand, v.idOwner 
+            FROM 
+            Person as p INNER JOIN Vehicle as v
+            ON p.id = v.idOwner;
+            `;
+        return this.dbApp.all(
+            query
+        )    
+    }
 
 }
 

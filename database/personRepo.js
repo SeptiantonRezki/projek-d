@@ -4,19 +4,13 @@ class PersonRepo{
         this.dbApp = dbApp;
     }
     createTable(){
-        const sql = `
-            CREATE TABLE IF NOT EXISTS Person(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                nama TEXT,
-                email TEXT
-            )
-        `;
+        const sql = `CREATE TABLE IF NOT EXISTS Person(id INTEGER PRIMARY KEY AUTOINCREMENT, nama TEXT, email TEXT, password TEXT)`;
         return this.dbApp.run(sql);
     }
-    create(nama, email){
+    create(nama, email, password){
         return this.dbApp.run(
-            "INSERT INTO Person(nama , email) VALUES(?, ?)",
-            [nama, email]
+            "INSERT INTO Person(nama , email, password) VALUES(?, ?, ?)",
+            [nama, email, password]
         )
     }
     update(Person){
@@ -35,12 +29,12 @@ class PersonRepo{
     }
     getById(idPerson){
         return this.dbApp.get(
-            "SELECT * FROM Person WHERE id=?",
+            "SELECT id, nama, email, password FROM Person WHERE id=?",
             [idPerson]
         )
     }
     getAll(){
-        return this.dbApp.all("SELECT * FROM Person")
+        return this.dbApp.all("SELECT id, nama, email, password FROM Person")
     }
 }
 
