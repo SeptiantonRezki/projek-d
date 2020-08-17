@@ -1,108 +1,40 @@
-npm run dev
+ssg static site generation
 
-dependecies typescript
-sqlite3 
-node 
-react
+interface => untuk menentukan argument suatu fucntion 
 
-
-menjalankan database 
-node sqlite3/sqlite3.ts
-
-yang digunakan
-
-import { NextApiRequest, NextApiResponse}  from 'next';
-export default function getPersonById(req : NextApiRequest, res : NextApiResponse){
-    res.json(
-        {  
-            byId: req.query.id, 
-            message :'informasi seseorang dari id'
-        }
-    )
-}
-
-
-sqlite3 with bluebird
-https://stackabuse.com/a-sqlite-tutorial-with-node-js/
-
-
-PART 6
-
-*) AUTHENTICATION VS AUTHORIZATION
-    1.) authentication adalah proses veritifikasi dari sebuah identitas
-    2.) authorization adalah proses veritifikasi seseorang , seseorang tersebut boleh melakukan apa saja
+SSG
+getStaticPaths
+getStaticProps
+const {data} = useSWR('some-endpoint')
+import { GetStaticProps, GetStaticPaths } from "next";
 
 
 
-Auth FLOW
-    ACTOR => (KIRIM) => USERNAME DAN PASSWORD => (UNTUK) => login dan signup => (SISTEM KIRIM) => JWT => ACTOR
-
-(1) PASSWORD
-    hash password => use bycrypt, don't use MD5
-
-(2) SIGN UP
-        Hash password using bycript
-        save hashed password + username to SQL TABLE
-        send back the JWT or "force" user to validate email
-    LOGIN 
-        Hash password using bycript
-        compare password with hashed password in database
+fething
+getIntialProps 
 
 
-JSON WEB TOKEN (JWT)
-jalan teraman untuk transfer claims diantara 2 party
-
-orang manapun bisa melihat  JWT playods/claims (tokennya)
-    => sehingga jangan mengirim passwordnya user (private data)
-
-jwt.io => header => alt dan typ
-
-Payload / claims - base64 encoded json with
-
-iss (issuer) claim
-sub (subject) claim
-aud (audience) claim
-exp (expiration time) claim
-
-more : tools.ietf.org/html/rfc7519#section-4.1
-
-base64decode.org
+SWR
+axios
+npm install --save @material-ui/core @material-ui/icons
+formik
 
 
-Local Storage / Session Storage
-    * Pros
-        Protacted against CSRF attacks
-    * Cons
-        We need to add the authentication token to every request
-        vulnerable to XSS (Cross site Scripting)
-        we shouldn't store sensitive data in WEBStore
+https://material-ui.com/
+https://cssinjs.org/?v=v10.3.0
+semua berkaitan dengan next.js
+https://github.com/vercel/next.js
+
+bahwasanya material ui tidak hanya menampilkan datanya saja di hasil preview,
+dengan tambahan dari github/example cari style material ui
 
 
-COOKIES
-    Pros
-        Mitigated XSS attacks if using "httpOnly"
-            Your Cookies are not accessible via javascript
-        Cookies are sent "automatically" in every request
-    Cons
-        CSRF (Cross Site request forgery) is a problem
-            vecause cookies are sent "automatically" ... request        
+material_ui
+ambil
+_app.js => gihub.com/bmvantunes/youtube-2020-feb-swr-hook/tree/master/pages
+_document.js
+thema.js
 
-Some measures to "migrate " problems
-    Add 2FA
-    protect yourself against XSS (escaping, etc)
-    Add secure, "httpOnly" and "SameSite"  to your cookies 
-    use CSRF Tokens
-        https://cheatsheetseries.owasp.org/cheatsheets/Cross-site_Request_Forgery_Prevention_Cheat_Sheat.html#samesite-cookie-attribute
-    require re-authentication for sensitive features
-        Your bank, uses OTP for many transfer
-    if your company has a security team. contact them(explain everything)
-
-
-USE HTTPS
-    USE HTTPS for every single endpoint/page in your website
-    Redirect from http://site.com to https://site.com 
-    Free certificates for custom domains: https://letsencrypt.org
-        Zeit Now
-        Netlify
-        Firebase
-----------------------------------------------------------------------------------------------------------        
+upload file
+ui ux
+optimalkan roler => video ke berapa lupa
